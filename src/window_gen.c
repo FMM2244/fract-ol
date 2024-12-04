@@ -1,25 +1,23 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   window_gen.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 18:44:53 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/04 19:15:19 by fmaaita          ###   ########.fr       */
+/*   Created: 2024/12/04 18:56:40 by fmaaita           #+#    #+#             */
+/*   Updated: 2024/12/04 19:24:04 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fractol.h"
 
-int	main(int ac, char **av)
+void	*start_window()
 {
-	
-	if (ac == 2 && (!ft_strcmp(av[1], "Mandelbrot") || !ft_strcmp(av[1], "Julia")))
-    {
-		start_window();	
-    }
-	else
-		write(1, "Sorry! an error occured. Available options are:\n\t--> Mandelbrot\n\t--> Julia\n", 74);
-	return (0);
+	t_xvar	*initializer;
+	t_win_list	*window_ptr;
+
+	initializer = mlx_init();
+	window_ptr = mlx_new_window(initializer, 1200, 1000, "fract-ol");
+	return (window_ptr);
 }
