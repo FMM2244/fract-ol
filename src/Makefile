@@ -1,18 +1,27 @@
 # -*- Makefile -*-
-CC= cc
+CC = cc
 
-CFLAGS= -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra
 
-SRC=fractol.c window_gen.c 
+NAME = fractol
+LIBFTDIR = libft
+LIBFT = libft/libft.a
+SRC = fractol.c window_controls.c 
 
-$(NAME):
+all: $(NAME)
 
-all:
-	$(CC) $(SRC)
+$(LIBFT):
+	$(MAKE) -C $(LIBFTDIR)
+
+$(NAME): $(SRC) $(LIBFT)
+	$(CC) $(CFLAGS) $(SRC) -L$(LIBFTDIR) -lft -lX11 -lXext -lmlx -lm -o $(NAME)
 clean:
+	rm -f $(NAME)
+	rm -f *.o
 
 fclean: clean
+	rm -f $(LIBFT)
 
-re:
+re: fclean all
 
-.PHONY:
+.PHONY: all clean fclean re
