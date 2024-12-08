@@ -6,7 +6,7 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:44:53 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/08 21:24:26 by fmaaita          ###   ########.fr       */
+/*   Updated: 2024/12/08 21:34:04 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,7 +14,7 @@
 
 int	main(int ac, char **av)
 {
-	t_win_list	window_ptr;
+	void	*window_ptr;
 	window_ptr = NULL;
 	if (ac == 2 && (!ft_strcmp(av[1], "Mandelbrot") || !ft_strcmp(av[1], "Julia")))
     {

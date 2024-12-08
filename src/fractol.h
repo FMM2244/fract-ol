@@ -6,7 +6,7 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:32:50 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/08 16:41:05 by fmaaita          ###   ########.fr       */
+/*   Updated: 2024/12/08 21:36:38 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,8 +22,8 @@
 
 typedef struct z_point
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
 }	i_point;
 
 #endif
