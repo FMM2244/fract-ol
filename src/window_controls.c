@@ -6,26 +6,26 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:56:40 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/08 21:24:13 by fmaaita          ###   ########.fr       */
+/*   Updated: 2024/12/09 19:52:10 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fractol.h"
 
-void	*start_window()
+void	*start_window(void *initializer)
 {
-	t_xvar	*initializer;
-	t_win_list	*window_ptr;
+	void	*window_ptr;
 
-	window_ptr = NULL;
 	initializer = NULL;
 	initializer = mlx_init();
 	window_ptr = mlx_new_window(initializer, 1200, 1000, "fract-ol");
 	return (window_ptr);
 }
 
-void	window_display_end()
+void	window_display_end(void *initializer, void *window_ptr)
 {
-	
+	mlx_clear_window(initializer, window_ptr);
+	mlx_destroy_window(initializer, window_ptr);
+	mlx_destroy_display(initializer);
 }
 
