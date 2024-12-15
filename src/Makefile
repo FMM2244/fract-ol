@@ -6,7 +6,7 @@ CFLAGS = -Werror -Wall -Wextra
 NAME = fractol
 LIBFTDIR = libft
 LIBFT = libft/libft.a
-SRC = window_controls.c fractol.c
+SRC = window_controls.c fractol.c event_controls.c
 LDFLAGS = -L/usr/include/../lib -L/usr/local/lib/ -lmlx -lXext -lX11 -lm
 
 all: $(NAME)

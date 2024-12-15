@@ -6,7 +6,7 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:32:50 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/09 13:07:11 by fmaaita          ###   ########.fr       */
+/*   Updated: 2024/12/15 20:55:15 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,7 +17,11 @@
 # include <unistd.h>
 // # include <stdlib.h>
 # include <mlx.h>
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include <math.h>
+# include <stdarg.h>
+# include <stdio.h>
 # include "libft.h"
 
 typedef struct z_point
@@ -28,5 +32,7 @@ typedef struct z_point
 
 void	*start_window();
 void	window_display_end();
+int	no_event_handler(void *win_ptr, void *init);
+int	esc_handler(int key, void *win_ptr, void *init);
 
 #endif

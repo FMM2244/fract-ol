@@ -6,26 +6,30 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:44:53 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/09 20:23:51 by fmaaita          ###   ########.fr       */
+/*   Updated: 2024/12/15 21:34:06 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fractol.h"
-#include <stdio.h>
+
 int	main(int ac, char **av)
 {
 	void	*window_ptr;
 	void	*init;
 
-	if (ac == 2 && (!ft_strncmp(av[1], "Mandelbrot", 11) || !ft_strncmp(av[1], "Julia", 6)))
+	if (ac == 2 && (!ft_strncmp(av[1], "Mandelbrot", 11) 
+			|| !ft_strncmp(av[1], "Julia", 6)))
     {
 		init = mlx_init();
 		window_ptr = mlx_new_window(init, 1200, 1000, "fract-ol");
-		window_display_end(init, window_ptr);
-		free(window_ptr);
-		free(init);
+		mlx_loop_hook(init, &no_event_handler, &window_ptr);
+		mlx_key_hook(window_ptr, &esc_handler, &init);
+		mlx_loop(init);
     }
 	else
-		write(1, "Sorry! an error occured. Available options are:\n\t--> Mandelbrot\n\t--> Julia\n", 74);
+	{
+		write(1, "Sorry! an error occured. ", 25);
+		write(1, "Available options are:\n\t--> Mandelbrot\n\t--> Julia\n", 50);
+	}
 	return (0);
 }

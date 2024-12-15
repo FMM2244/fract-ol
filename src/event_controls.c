@@ -1,31 +1,27 @@
 /******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window_controls.c                                  :+:      :+:    :+:   */
+/*   event_controls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/04 18:56:40 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/15 14:25:01 by fmaaita          ###   ########.fr       */
+/*   Created: 2024/12/15 18:33:31 by fmaaita           #+#    #+#             */
+/*   Updated: 2024/12/15 21:34:26 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fractol.h"
 
-void	*start_window(void *initializer)
+int	no_event_handler(void *win_ptr, void *init)
 {
-	void	*window_ptr;
-
-	initializer = NULL;
-	initializer = mlx_init();
-	window_ptr = mlx_new_window(initializer, 1200, 1000, "fract-ol");
-	return (window_ptr);
+	return (0);
 }
 
-void	window_display_end(void *initializer, void *window_ptr)
+int	esc_handler(int key, void *win_ptr, void *init)
 {
-	mlx_clear_window(initializer, window_ptr);
-	mlx_destroy_window(initializer, window_ptr);
-	mlx_destroy_display(initializer);
+	if (key == XK_Escape)
+		window_display_end(init, win_ptr);
+	free(window_ptr);
+	free(init);
+	return (0);
 }
-
