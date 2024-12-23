@@ -1,7 +1,15 @@
 # fract-ol
 <ul>
-  <a href="">Intrduction</a>
-  <a href="">Makefile</a>
-  <a href="">Program</a>
-  <a herf="">Sources & Links</a>
+  <li>
+    <a href="">Intrduction</a>
+  </li>
+  <li>
+    <a href="">Makefile</a>
+  </li>
+  <li>
+    <a href="">Program</a>
+  </li>
+  <li>
+    <a herf="">Sources & Links</a>
+  </li>
 </ol>
