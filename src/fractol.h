@@ -6,16 +6,16 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:32:50 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/15 20:55:15 by fmaaita          ###   ########.fr       */
+/*   Updated: 2024/12/16 16:46:53 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-// # include <stddef.h>
+# include <stddef.h>
 # include <unistd.h>
-// # include <stdlib.h>
+# include <stdlib.h>
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>

@@ -2,7 +2,7 @@
 
 #target: dependencies
 #	action
-CFLAGS = -Werror -Wextra -Wall
+CFLAGS = -Werror -Wextra -Wall -g
 
 NAME = libft.a
 

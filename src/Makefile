@@ -1,7 +1,7 @@
 # -*- Makefile -*-
 CC = cc
 
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra -g
 
 NAME = fractol
 LIBFTDIR = libft
@@ -20,6 +20,10 @@ $(NAME): $(SRC) $(LIBFT)
 clean:
 	rm -f $(NAME)
 	$(MAKE) clean -C $(LIBFTDIR)
+
+
+test: $(SRC) $(LIBFT)
+	$(CC) $(CFLAGS) $(SRC) $(LDFLAGS) -L$(LIBFTDIR) -I$(LIBFTDIR) -lft -o $(NAME)
 
 fclean: clean
 	rm -f $(LIBFT)
