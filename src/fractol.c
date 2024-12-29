@@ -6,7 +6,7 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:44:53 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/23 19:07:39 by fmaaita          ###   ########.fr       */
+/*   Updated: 2024/12/29 19:58:26 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,18 +14,19 @@
 
 int	main(int ac, char **av)
 {
-	void	*window_ptr;
-	void	*init;
-	void	*param;
+	w_info	data;
 
+	data.height = 1024;
+	data.width = 728;
 	if (ac == 2 && (!ft_strncmp(av[1], "Mandelbrot", 11) 
 			|| !ft_strncmp(av[1], "Julia", 6)))
     {
-		init = mlx_init();
-		window_ptr = mlx_new_window(init, 1024, 728, "fract-ol");
-		mlx_loop_hook(init, &no_event_handler, &param);
-		mlx_key_hook(window_ptr, &esc_handler, &param);
-		mlx_loop(init);
+		data.mlx_ptr = mlx_init();
+		if (!data.mlx_ptr)
+			return (0);
+		data.win_ptr = mlx_new_window(data.mlx_ptr, data.height, data.width, "fract-ol");
+		mlx_key_hook(data.win_ptr, &esc_handler, &data);
+		mlx_loop(data.mlx_ptr);
     }
 	else
 	{
