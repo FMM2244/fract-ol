@@ -6,7 +6,7 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:32:50 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/30 19:23:08 by fmaaita          ###   ########.fr       */
+/*   Updated: 2025/01/01 14:28:42 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -22,7 +22,7 @@
 # include <math.h>
 # include <stdarg.h>
 # include <stdio.h>
-# include "libft.h"
+# include "libft/libft.h"
 
 typedef struct t_info
 {
