@@ -6,7 +6,7 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:32:50 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/29 19:40:49 by fmaaita          ###   ########.fr       */
+/*   Updated: 2024/12/30 19:23:08 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -34,11 +34,11 @@ typedef struct t_info
 
 typedef struct t_point
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }	i_point;
 
-int	no_event_handler(void *win_ptr, void *init);
-int	esc_handler(int key, w_info *data);
+int	ft_close(w_info *data);
+int	key_handler(int key, w_info *data);
 
 #endif

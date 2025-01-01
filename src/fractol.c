@@ -6,7 +6,7 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:44:53 by fmaaita           #+#    #+#             */
-/*   Updated: 2024/12/29 19:58:26 by fmaaita          ###   ########.fr       */
+/*   Updated: 2024/12/30 19:23:11 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -25,7 +25,8 @@ int	main(int ac, char **av)
 		if (!data.mlx_ptr)
 			return (0);
 		data.win_ptr = mlx_new_window(data.mlx_ptr, data.height, data.width, "fract-ol");
-		mlx_key_hook(data.win_ptr, &esc_handler, &data);
+		mlx_hook(data.win_ptr, DestroyNotify, StructureNotifyMask, &ft_close, &data);
+		mlx_key_hook(data.win_ptr, &key_handler, &data);
 		mlx_loop(data.mlx_ptr);
     }
 	else
