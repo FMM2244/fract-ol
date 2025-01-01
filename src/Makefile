@@ -20,10 +20,11 @@ $(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJ) $(LDFLAGS) -L$(LIBFTDIR) -I$(LIBFTDIR) -lft -o $(NAME)
 
 clean:
-	rm -f $(NAME)
+	rm *.o
 	$(MAKE) clean -C $(LIBFTDIR)
 
 fclean: clean
+	rm -f $(NAME)
 	rm -f $(LIBFT)
 	$(MAKE) fclean -C $(LIBFTDIR)
 
