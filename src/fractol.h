@@ -6,12 +6,14 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:32:50 by fmaaita           #+#    #+#             */
-/*   Updated: 2025/01/01 20:00:01 by fmaaita          ###   ########.fr       */
+/*   Updated: 2025/01/05 21:02:32 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+# define max_no_iterations 200
+# define color 16563729
 
 # include <stddef.h>
 # include <unistd.h>
