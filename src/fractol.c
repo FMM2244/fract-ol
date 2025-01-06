@@ -6,7 +6,7 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 18:44:53 by fmaaita           #+#    #+#             */
-/*   Updated: 2025/01/05 21:02:39 by fmaaita          ###   ########.fr       */
+/*   Updated: 2025/01/06 20:36:02 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -14,8 +14,8 @@
 
 int	main(int ac, char **av)
 {
-	w_info	data;
-	//fractal	*frctl;
+	t_info		data;
+	t_fractal	*frctl;
 
 	data.height = 1024;
 	data.width = 728;
@@ -28,8 +28,9 @@ int	main(int ac, char **av)
 			return (0);
 		data.win_ptr = mlx_new_window(data.mlx_ptr,
 				data.height, data.width, "fract-ol");
-		data.img_ptr = mlx_new_image(data.mlx_ptr,
+		data.img.img_ptr = mlx_new_image(data.mlx_ptr,
 				data.width, data.height);
+		data.img.buffer = mlx_get_data_addr(data.img.img_ptr, &data.img.bpp, &data.img.endian);
 		mlx_hook(data.win_ptr, DestroyNotify,
 			StructureNotifyMask, &ft_close, &data);
 		mlx_key_hook(data.win_ptr, &key_handler, &data);

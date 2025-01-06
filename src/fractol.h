@@ -6,14 +6,14 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:32:50 by fmaaita           #+#    #+#             */
-/*   Updated: 2025/01/05 21:02:32 by fmaaita          ###   ########.fr       */
+/*   Updated: 2025/01/06 20:25:58 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
 # define max_no_iterations 200
-# define color 16563729
+# define COLOR 0xFCBE11
 
 # include <stddef.h>
 # include <unistd.h>
@@ -27,17 +27,28 @@
 # include <float.h>
 # include "libft/libft.h"
 
-typedef struct t_info
+typedef struct s_img
+{
+	void	*img_ptr;
+	int		*buffer;
+	int		bpp;
+	int		size_line;
+	int		endian;
+} t_img;
+
+
+typedef struct s_info
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
-	void	*img_ptr;
+	t_img	img;
 	int		height;
 	int 	width;
-}	w_info;
+}	t_info;
 
-typedef struct t_fractal
+typedef struct s_fractal
 {
+	int		id;
 	int		x;
 	int		y;
 	double	zx;
@@ -47,10 +58,12 @@ typedef struct t_fractal
 	double	offset_x;
 	double	offset_y;
 	double	zoom;
-}	fractal;
+}	t_fractal;
 
-int	ft_close(w_info *data);
-int	key_handler(int key, w_info *data);
-int	pixel_iterator(char *name, w_info *data, fractal *fractal);
+int	ft_close(t_info *data);
+int	key_handler(int key, t_info *data);
+int	pixel_iterator(t_info *data, t_fractal *fractal, double cx, double cy);
+int	mandelbrot(t_fractal *fractal);
+int	julia(t_fractal *fractal, double cx, double cy);
 
 #endif
