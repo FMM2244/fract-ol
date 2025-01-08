@@ -6,13 +6,13 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 18:33:31 by fmaaita           #+#    #+#             */
-/*   Updated: 2025/01/06 20:21:26 by fmaaita          ###   ########.fr       */
+/*   Updated: 2025/01/08 20:55:58 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
 #include "fractol.h"
 
-int	ft_close(s *data)
+int	ft_close(t_info *data)
 {
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_loop_end(data->mlx_ptr);
@@ -22,9 +22,10 @@ int	ft_close(s *data)
 	return (0);
 }
 
-int	key_handler(int key, s *data)
+int	key_handler(int key, t_info *data)
 {
 	if (key == XK_Escape)
 		ft_close(data);
 	return (0);
 }
+

@@ -6,7 +6,7 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 12:32:50 by fmaaita           #+#    #+#             */
-/*   Updated: 2025/01/06 20:25:58 by fmaaita          ###   ########.fr       */
+/*   Updated: 2025/01/08 21:06:01 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -27,25 +27,6 @@
 # include <float.h>
 # include "libft/libft.h"
 
-typedef struct s_img
-{
-	void	*img_ptr;
-	int		*buffer;
-	int		bpp;
-	int		size_line;
-	int		endian;
-} t_img;
-
-
-typedef struct s_info
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-	int		height;
-	int 	width;
-}	t_info;
-
 typedef struct s_fractal
 {
 	int		id;
@@ -59,6 +40,27 @@ typedef struct s_fractal
 	double	offset_y;
 	double	zoom;
 }	t_fractal;
+
+typedef struct s_img
+{
+	void	*img_ptr;
+	int		*buffer;
+	int		bpp;
+	int			size_line;
+	int			endian;
+} t_img;
+
+
+typedef struct s_info
+{
+	t_img	img;
+	void	*mlx_ptr;
+	void	*win_ptr;
+	int		height;
+	int 	width;
+	t_fractal	fractal;
+}	t_info;
+
 
 int	ft_close(t_info *data);
 int	key_handler(int key, t_info *data);
