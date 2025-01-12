@@ -6,7 +6,7 @@
 /*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 13:01:46 by fmaaita           #+#    #+#             */
-/*   Updated: 2025/01/12 12:56:59 by fmaaita          ###   ########.fr       */
+/*   Updated: 2025/01/12 19:48:47 by fmaaita          ###   ########.fr       */
 /*                                                                            */
 /******************************************************************************/
 
@@ -17,10 +17,12 @@
 **/
 void	color_handler(t_info *data, int i)
 {
-	if (i == max_no_iterations)
-		data->img.buffer[(data->img.size_line / 4) * data->fractal.y + data->fractal.x] = 0x000000;
+	if (i == MAX_NO_ITERATIONS)
+		data->img.buffer[(data->img.size_line / 4)
+			* data->fractal.y + data->fractal.x] = 0x000000;
 	else
-		data->img.buffer[(data->img.size_line / 4) * data->fractal.y + data->fractal.x] = COLOR * i;
+		data->img.buffer[(data->img.size_line / 4)
+			* data->fractal.y + data->fractal.x] = COLOR3 * i;
 }
 
 /**
@@ -44,7 +46,7 @@ int	checker(t_fractal *fractal)
 	x_init = fractal->zx;
 	y_init = fractal->zy;
 	i = 0;
-	while (i < max_no_iterations)
+	while (i < MAX_NO_ITERATIONS)
 	{
 		temp = fractal->zx;
 		fractal->zx = fractal->zx * fractal->zx - fractal->zy * fractal->zy
@@ -54,7 +56,7 @@ int	checker(t_fractal *fractal)
 			break ;
 		if (fractal->zx == x_init && fractal->zy == y_init)
 		{
-			i = max_no_iterations;
+			i = MAX_NO_ITERATIONS;
 			break ;
 		}
 		i++;
@@ -64,7 +66,6 @@ int	checker(t_fractal *fractal)
 
 /**
  * the second function is to iterate through the Mandelbrot function
- * as the name suggests 
  * the Mandelbrot function is 
 **/
 int	mandelbrot(t_info *data)
@@ -73,36 +74,36 @@ int	mandelbrot(t_info *data)
 
 	data->fractal.zx = 0.0;
 	data->fractal.zy = 0.0;
-	data->fractal.cx = data->fractal.xmin + (data->fractal.xmax - data->fractal.xmin) * (data->fractal.x / data->width);
-	data->fractal.cy = data->fractal.ymin + (data->fractal.ymax - data->fractal.ymin) * (data->fractal.y / data->height);
+	data->fractal.cx = (data->fractal.x - data->width / 2)
+		/ data->fractal.zoom + data->fractal.offset_x;
+	data->fractal.cy = (data->fractal.y - data->height / 2)
+		/ data->fractal.zoom + data->fractal.offset_y;
 	i = checker(&data->fractal);
 	color_handler(data, i);
 	return (0);
 }
 
 /**
- * the third function is to iterate through the Julia set 
- * cx = c real 
- * cy = c imageniry 
+ * the third function is to iterate through the Julia set
 **/
-int	julia(t_info *data, double cx, double cy)
+int	julia(t_info *data)
 {
-	//int	i;
+	int	i;
 
-	data->fractal.cx = cx;
-	data->fractal.cy = cy;
-	//i = checker(fractal);
-	//color_handler(fractal, i);
+	data->fractal.zx = (data->fractal.x - data->width / 2)
+		/ data->fractal.zoom + data->fractal.offset_x;
+	data->fractal.zy = (data->fractal.y - data->height / 2)
+		/ data->fractal.zoom + data->fractal.offset_y;
+	i = checker(&data->fractal);
+	color_handler(data, i);
 	return (0);
 }
 
-
 /**
  * the first function iterates through all pixels on the window
- * and call the correct 
- * function based on the users input
+ * and call the correct function based on the users previous input
 **/
-int	pixel_iterator(t_info *data, double cx, double cy)
+int	pixel_iterator(t_info *data)
 {
 	data->fractal.y = 0;
 	while (data->fractal.y < data->height)
@@ -113,8 +114,7 @@ int	pixel_iterator(t_info *data, double cx, double cy)
 			if (data->fractal.id == 1)
 				mandelbrot(data);
 			if (data->fractal.id == 2)
-				julia(data, cx, cy);
-			mlx_pixel_put(data->mlx_ptr, data->win_ptr, data->fractal.x, data->fractal.y, COLOR);
+				julia(data);
 			data->fractal.x++;
 		}
 		data->fractal.y++;
