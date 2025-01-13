@@ -63,10 +63,13 @@ double	atod(char *num)
 	double	double_value;
 	int		int_value;
 	int		i;
+	int             sign;
 
-	int = 0;
-	while (num != '.')
-	{
-		
-	}
+	i = -1;
+	sign = 1;
+	if (num[0] == '-')
+                sign = -1;
+	while (num[++i] != '.')
+		int_value = int_value * 10 + num[i] - '0';
+
 }
