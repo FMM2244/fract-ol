@@ -1,17 +1,23 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
+/*   By: fmaaita <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 12:32:50 by fmaaita           #+#    #+#             */
-/*   Updated: 2025/01/12 21:13:50 by fmaaita          ###   ########.fr       */
+/*   Created: 2025/01/15 22:56:08 by fmaaita           #+#    #+#             */
+/*   Updated: 2025/01/15 22:56:12 by fmaaita          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+# define MAX_NO_ITERATIONS 200
+# define COLOR1 0xB08FF3
+# define COLOR2 0xFF
+# define COLOR3 0x2410FF
+# define CX 0.285
+# define CY 0.01
 
 # include <stddef.h>
 # include <unistd.h>
@@ -25,24 +31,18 @@
 # include <float.h>
 # include "libft/libft.h"
 
-# define MAX_NO_ITERATIONS 200
-# define COLOR1 0xFCBE11
-# define COLOR2 0x2410FF
-# define COLOR3 0x350B3E
-# define COLOR4 0x424242
-
 typedef struct s_fractal
 {
-	double	zx;
-	double	zy;
-	double	cx;
-	double	cy;
 	int		id;
 	int		x;
 	int		y;
 	int		offset_x;
 	int		offset_y;
-	int		zoom;
+	double	zx;
+	double	zy;
+	double	cx;
+	double	cy;
+	double	zoom;
 }			t_fractal;
 
 typedef struct s_img
@@ -62,12 +62,16 @@ typedef struct s_info
 	void		*win_ptr;
 	int			height;
 	int			width;
+	int			mx;
+	int			my;
 }				t_info;
 
-int	ft_close(t_info *data);
-int	key_handler(int key, t_info *data);
-int	pixel_iterator(t_info *data);
-int	mandelbrot(t_info *data);
-int	julia(t_info *data);
+double	atod(char *num);
+int		ft_close(t_info *data);
+int		key_handler(int key, t_info *data);
+int		pixel_iterator(t_info *data);
+int		mandelbrot(t_info *data);
+int		julia(t_info *data);
+int		mouse_handler(int code, int x, int y, t_info *data);
 
 #endif

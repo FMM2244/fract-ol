@@ -1,14 +1,14 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   image_controls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
+/*   By: fmaaita <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/01 13:01:46 by fmaaita           #+#    #+#             */
-/*   Updated: 2025/01/12 19:48:47 by fmaaita          ###   ########.fr       */
+/*   Created: 2025/01/15 22:57:49 by fmaaita           #+#    #+#             */
+/*   Updated: 2025/01/15 22:58:06 by fmaaita          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "fractol.h"
 
@@ -22,7 +22,7 @@ void	color_handler(t_info *data, int i)
 			* data->fractal.y + data->fractal.x] = 0x000000;
 	else
 		data->img.buffer[(data->img.size_line / 4)
-			* data->fractal.y + data->fractal.x] = COLOR3 * i;
+			* data->fractal.y + data->fractal.x] = COLOR1 * i;
 }
 
 /**
@@ -66,6 +66,7 @@ int	checker(t_fractal *fractal)
 
 /**
  * the second function is to iterate through the Mandelbrot function
+ * as the name suggests 
  * the Mandelbrot function is 
 **/
 int	mandelbrot(t_info *data)
@@ -84,7 +85,9 @@ int	mandelbrot(t_info *data)
 }
 
 /**
- * the third function is to iterate through the Julia set
+ * the third function is to iterate through the Julia set 
+ * cx = c real 
+ * cy = c imageniry 
 **/
 int	julia(t_info *data)
 {
@@ -101,7 +104,8 @@ int	julia(t_info *data)
 
 /**
  * the first function iterates through all pixels on the window
- * and call the correct function based on the users previous input
+ * and call the correct 
+ * function based on the users input
 **/
 int	pixel_iterator(t_info *data)
 {

@@ -1,20 +1,21 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   event_controls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmaaita <fmaaita@student.42amman.com>      +#+  +:+       +#+        */
+/*   By: fmaaita <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 18:33:31 by fmaaita           #+#    #+#             */
-/*   Updated: 2025/01/12 22:02:32 by fmaaita          ###   ########.fr       */
+/*   Created: 2025/01/15 22:54:14 by fmaaita           #+#    #+#             */
+/*   Updated: 2025/01/15 22:54:22 by fmaaita          ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "fractol.h"
 
 int	ft_close(t_info *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->win_ptr);
+	if (data->img.buffer)
+		mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_loop_end(data->mlx_ptr);
 	mlx_destroy_display(data->mlx_ptr);
@@ -27,49 +28,28 @@ int	key_handler(int key, t_info *data)
 {
 	if (key == XK_Escape)
 		ft_close(data);
-	else if (key == )
-	{
-		
-	}
-	else if (key == )
-	{
-		
-	}
 	return (0);
 }
 
-void	atod_errors(char *num)
+int	mouse_handler(int code, int x, int y, t_info *data)
 {
-	int = 0;
-
-	if ((num[0] != '+' && num[0] != '-' && num[0] > 47 && num[0] < 57) && (ft_strchr(num, '.') - ft_strrchr(num, '.')))
+	if (code == 4)
 	{
-		perror("Invalid numbers, try again");
-		exit(0);
+		data->fractal.zoom += 2;
+		data->fractal.offset_x = ((data->mx + data->fractal.offset_x)
+				/ data->width / data->fractal.zoom);
+		data->fractal.offset_y = ((data->my + data->fractal.offset_y)
+				/ data->width / data->fractal.zoom);
 	}
-	i = 0;
-	while (!num[++i])
+	else if (code == 5 && data->fractal.zoom - 1)
 	{
-		if ((num[i] > 47 && num[i] < 57) || num[i] != '.')
-		{
-			perror("Invalid numbers, try again");
-			exit(0);
-		}
+		data->fractal.zoom -= 2;
+		data->fractal.offset_x = ((data->mx + data->fractal.offset_x)
+				/ data->width / data->fractal.zoom);
+		data->fractal.offset_y = ((data->my + data->fractal.offset_y)
+				/ data->width / data->fractal.zoom);
 	}
-}
-
-double	atod(char *num)
-{
-	double	double_value;
-	int		int_value;
-	int		i;
-	int             sign;
-
-	i = -1;
-	sign = 1;
-	if (num[0] == '-')
-                sign = -1;
-	while (num[++i] != '.')
-		int_value = int_value * 10 + num[i] - '0';
-
+	x += y;
+	(void)code;
+	return (0);
 }
